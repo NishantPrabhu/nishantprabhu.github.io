@@ -1,17 +1,21 @@
-- title: Student, Harvard CS
-  from: 2014
-  to: 2018
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-
-- title: Software Engineer, Google, UK
-  from: 2018
+- title: Project Member, Analytics Club, IIT Madras
+  from: May 2020
   to: present
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  description: We're bringing together generative networks, reinforcement learning and 
+                bayesian optimization to develop a model that can predict stock prices
+                with considerably low error
+
+- title: Deep Learning Summer Intern, Continental Automotives
+  from: May 2019
+  to: July 2019
+  description: Developed a computer vision based unsupervised learning pipeline for
+                automated driver assistance systems (ADAS). The product can identify
+                road signs captured during test runs in various environmental and 
+                lighting conditions
+
+- title: Intern, Digital Horizons
+  from: May 2020
+  to: June 2020
+  description: Standing in long checkout queues in retail stores can be frustrating. In
+                this project, I co-developed a computer vision tool automatically identify
+                products from their images using spectral features, i.e. packaging color patterns.

@@ -1,11 +1,11 @@
-- name: HTML5/CSS3
-  percentage: 90
-  color: danger
-
-- name: Go
+- name: Tensorflow/PyTorch
   percentage: 80
+  color: 
+
+- name: Scikit-Learn
+  percentage: 75
   color:
 
-- name: Python
+- name: Matplotlib/Plotly
   percentage: 70
-  color: dark
+  color: 
