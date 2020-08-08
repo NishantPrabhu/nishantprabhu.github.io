@@ -10,6 +10,16 @@
 
 <head>
 
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        inlineMath: [['$','$']]
+      }
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +44,28 @@
 
 
 <body class="d-flex flex-column h-100">
-
+  <style>
+    #particles-js canvas {
+        display: block;
+        vertical-align: bottom;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+        -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
+        transition: opacity .8s ease, transform 1.4s ease
+    }
+  
+    #particles-js {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: -10;
+        top: 0;
+        left: 0
+    }
+  </style>
+  
   <main class="flex-shrink-0 container mt-5">
   <nav class="navbar navbar-expand-lg navbar-light">
 
@@ -47,7 +78,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto"><a class="nav-item nav-link " href="/projects/">Projects</a>
 
-      <a class="nav-item nav-link active" href="/blog/">Blog</a>
+      <a class="nav-item nav-link " href="/deepmath/">DeepMath</a>
 
       <a class="nav-item nav-link " href="/about/">About</a>
 
@@ -61,30 +92,30 @@
   <!-- Collect tags from all posts --><!-- List tags & related posts -->
 
 <div class="py-3">
-  <h4 id="javascript">JavaScript</h4>
+  <h4 id="calculus">Calculus</h4>
   <ol>
-  <a href="/blog/learn-react-js"><li>Learn React.js in 5 minutes</li></a>
-    <small class="text-muted"> - 15 February 2019</small>
+  <a href="/blog/testing"><li>Basics of Neural Networks</li></a>
+    <small class="text-muted"> - 05 August 2020</small>
     <br/>
   </ol>
 </div>
 <hr class="bg-light">
 
 <div class="py-3">
-  <h4 id="react">React</h4>
+  <h4 id="linear-algebra">Linear Algebra</h4>
   <ol>
-  <a href="/blog/learn-react-js"><li>Learn React.js in 5 minutes</li></a>
-    <small class="text-muted"> - 15 February 2019</small>
+  <a href="/blog/testing"><li>Basics of Neural Networks</li></a>
+    <small class="text-muted"> - 05 August 2020</small>
     <br/>
   </ol>
 </div>
 <hr class="bg-light">
 
 <div class="py-3">
-  <h4 id="web-development">Web Development</h4>
+  <h4 id="python">Python</h4>
   <ol>
-  <a href="/blog/learn-react-js"><li>Learn React.js in 5 minutes</li></a>
-    <small class="text-muted"> - 15 February 2019</small>
+  <a href="/blog/testing"><li>Basics of Neural Networks</li></a>
+    <small class="text-muted"> - 05 August 2020</small>
     <br/>
   </ol>
 </div>
@@ -92,7 +123,7 @@
 
 </div>
   </main>
-
+  <div id="particles-js"></div>
   <footer id="bgimage" class="mt-auto py-3 text-center">
 
   <small class="text-muted mb-2">
@@ -147,6 +178,8 @@ $(function () {
 </script>
 
 
+  <script src="http://localhost:4000/assets/js/particles.js"></script>
+  <script src="http://localhost:4000/assets/js/app.js"></script>
 
 </body>
 
