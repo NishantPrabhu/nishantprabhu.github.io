@@ -132,7 +132,7 @@ $$
 \sigma(a)=\frac{1}{1+e^{-a}}\quad\textrm{or}\quad\sigma(a)=\frac{c}{1+e^{-\beta a}}
 $$
 
-In the latter form, parameters $c$ and $\beta$ adjust the scale and steepness of the function respectively. They may be learnt by the network or kept fixed manually. It is also interesting to note that the derivative of the sigmoid function can be expressed in terms of the function itself. This property of loss functions is exceptionally important because it makes computations easier when updating model parameters.
+In the latter form, parameters $c$ and $\beta$ adjust the scale and steepness of the function respectively. They may be learnt by the network or kept fixed manually. It is also interesting to note that the derivative of the sigmoid function can be expressed in terms of the function itself. This property of activation functions is exceptionally important because it makes computations easier when updating model parameters.
 
 $$
 \nabla_{a}\sigma(a)=\nabla_{a}\frac{1}{1+e^{-a}}=\frac{e^{-a}}{\left(1+e^{-a}\right)^{2}}=\frac{1}{1+e^{-a}}\cdot\left(1-\frac{1}{1+e^{-a}}\right)=\sigma(a)\cdot\left(1-\sigma(a)\right)
@@ -145,7 +145,7 @@ This one looks very similar to the sigmoid function, but it scales all values to
     <img src="https://i.imgur.com/Y9kWahE.png" alt="tanh" with="500"/>
 </p>
 
-The function generating tanh activation is shown below. It can also be represented using the sigmoid function, which is shown after.
+The function generating tanh activation is shown below. It can also be represented using the sigmoid function, as shown.
 
 $$
 \tanh(a)=\frac{1-e^{-2a}}{1+e^{-2a}}=\frac{1}{1+e^{-2a}}-\left(1-\frac{1}{1+e^{-2a}}\right)=2\cdot\sigma(2a)-1
@@ -200,7 +200,7 @@ $$
 \nabla_{a_{1}}\left(z_{0}\right)=\nabla_{a_{1}}\left(\frac{e^{a_{0}}}{e^{a_{0}}+e^{a_{1}}+e^{a_{2}}}\right)=\frac{\sum e^{a_{k}}\cdot0-e^{a_{0}}\cdot e^{a_{1}}}{\left(\sum e^{a_{k}}\right)^{2}}=-z_{0}\cdot z_{1}
 $$
 
-For the three nodes, the gradients can be arranged neatly in a matrix like below (assume broadcasted operations where shapes don't match).
+For the three nodes, we can follow a similar pattern and the derivatives can be arranged neatly in a matrix like below (assume broadcasted operations where shapes don't match).
 
 $$
 \nabla_{a}z=\left[\begin{array}{ccc}
@@ -232,15 +232,17 @@ When a neural network is initialized, it's weights and biases are random. Since 
 Loss functions are specific to the task we want the model to learn, which is most often either regression or classification. Here, I'll briefly introduce the loss functions most popularly used for each of these tasks, along with some intuition as to why they are correct.
 
 ### Mean squared error for regression
-Since regression tasks have continuous valued outputs with no particular range, we would want the models outputs to be as close to the targets as possible. One way to do this is to compute the difference between the outputs and targets. However, this has two problems.
-1. It is arbitrary as to which will be subtracted from which.
-2. When this is computed across several examples and summed to compute total loss, positive and negative losses may cancel each other out, leading to zero or very small loss.
+Since regression tasks have continuous valued outputs with no particular range, we would want the distance between models outputs and the targets to be as small as possible. One way to do this would be to compute the difference between the outputs and targets. However, this has two problems.
+1. It is arbitrary as to which will be subtracted from which (predictions from targets or vice versa). They both result in losses with the same magnitude but opposite sign. 
+2. When loss computed like this is summed or averaged across several examples in a batch, positive and negative losses may cancel each other out leading to zero or very small loss.
 
-One workaround for this would be to consider the absolute value of the difference. While this works sometimes, it does not provide stable training. The most widely accepted method is the sum of squared differences between the targets and outputs. While aggregating the squared error across examples, it is reduced to its mean, to keep the magnitudes from getting too large. Below, $y$ represents the target and $\hat{y}$ represents the model's output.
+One workaround for this would be to consider the absolute value of the difference. While this works sometimes, it does not provide stable training. The most widely accepted method is the sum of squared differences between the targets and outputs. While aggregating the squared error across examples, it is reduced to its mean to dampen the effects of individual extreme errors. Below, $y$ represents the target and $\hat{y}$ represents the model's output. The superscript $(i)$ represents the index of a data point, and $N$ is the total number of data points.
 
 $$
 L(\hat{y},y)=\frac{1}{2N}\sum_{i=1}^{N}\left(y^{(i)}-\hat{y}^{(i)}\right)^{2}
 $$
+
+You might have noticed that I divided by $2N$ instead of just $N$ while averaging the total loss. While updating the model, we must differentiate this function with respect to the outputs and proceed with other computations. If you know how differentiation works, you'll realize that the 2 in the denominator divides off the 2 in the numerator coming from the derivative, keeping the calculation free of unnecessary constants. 
 
 ### Cross-entropy loss for classification
 Classification targets are provided as one-hot vectors to neural networks. The models output class probabilities of the same dimension. Can't we just use squared error loss to match the class probabilities with the target? MSE loss computes the closeness between two vectors disregarding individual elements. In classification however, we would like the probability for the correct class to be high and the others to be low. Crossentropy loss is designed to take this into account.
@@ -278,13 +280,15 @@ The reverse holds true when the gradient of the loss function at the predicted v
     <img src="https://i.imgur.com/WhbI0HG.png" alt="neg gradient" width="900"/>
 </p>
 
-Note that we do not go all the way to the minimum in this process. This happens because of two reasons.
-1. Loss function curves (or surfaces, when dependent on more than one parameter) will almost never be as smooth as this. Similar to how you would descend a rugged hill, we take small steps towards a (expected) minima, which is guided by the gradients at every stop.
+Note that we might not go all the way to the minimum in this process. This happens because of two reasons.
+1. Loss function curves (or surfaces, when dependent on more than one parameter) will almost never be as smooth as this. Similar to how you would descend a rugged hill, we take small steps towards the (expected) minima, which is guided by the gradients at every stop.
 2. Loss functions may not have just one minima. If we are not careful, the gradients might be large enough to push us over to a part of the curve where the loss isn't as small as it can be. In the figure below, starting from point $A$, not taking small steps could land us at $L_{2}$, while we should land at $L_{1}$. What if we started from point $B$ in the first place? We would land at $L_{2}$ in that instance. This is solved by random initialization of network parameters. That is, hopefully in some iteration, we will start off at a point like $A$ and reach the correct minimum.
 
 <p align="center">
     <img src="https://i.imgur.com/Deiq0Qi.png" alt="bad loss" width="500" />
 </p>
+
+Better strategies for reaching minima of loss functions is a whole topic on its own. I'll cover that in a different post.
 
 ## Backpropagation
 
@@ -484,5 +488,5 @@ Y-Z^{(L)} & \textrm{Mean squared error}\\
 $$
 
 ## Until next time
-These were some fundamental concepts behind training a simple fully connected neural network. However, this method of computing gradients and updating weights doesn't provide stable training, and making convergence really slow. In the next post, I'll talk about accelerated learning using **optimizers**.
+These were some fundamental concepts behind training a simple fully connected neural network. However, this method of computing gradients and updating weights doesn't provide stable training, and convergence is usually slow (or may not happen at all). In the next post, I'll talk about accelerated learning using **optimizers** and **learning rate scheduling**.
 
