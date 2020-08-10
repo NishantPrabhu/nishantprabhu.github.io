@@ -27,11 +27,7 @@ var pJS = function(tag_id, params){
         }
       },
       color: {
-<<<<<<< HEAD
-        value: '#000'
-=======
         value: '#fff'
->>>>>>> 530dd5a7c14c9164ba2aa54fbafa955a6c4d65f1
       },
       shape: {
         type: 'circle',
@@ -71,7 +67,7 @@ var pJS = function(tag_id, params){
       line_linked: {
         enable: true,
         distance: 100,
-        color: '#fff',
+        color: '#000000',
         opacity: 1,
         width: 1
       },
@@ -1542,8 +1538,4 @@ window.particlesJS.load = function(tag_id, path_config_json, callback){
   };
   xhr.send();
 
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> 530dd5a7c14c9164ba2aa54fbafa955a6c4d65f1
