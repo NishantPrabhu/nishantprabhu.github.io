@@ -310,6 +310,8 @@ body { font-family: "Poppins", sans-serif; }
 .post table th { padding-top: 12px; padding-bottom: 12px; font-weight: 500; text-align: left; background-color: #007bff; color: white; }
 .post table tr:nth-child(even) { background-color: #f8f9fa; }
 
+body { font-family: Helvetica, sans-serif; }
+
 .social { text-decoration: none !important; }
 
 #attribution { opacity: 0.5; }

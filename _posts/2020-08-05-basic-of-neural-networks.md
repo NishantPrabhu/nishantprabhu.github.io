@@ -3,7 +3,7 @@ title: Basics of Neural Networks
 tags: [Calculus, Linear Algebra, Python]
 style: border
 color: primary
-description: An overview of basic concepts of neural networks 
+description: An overview of basic concepts for neural networks. 
 ---
 
 In this post, I'll provide an introduction to neural networks, including their architecture and how they learn functions to map input and output spaces. Here is a brief summary of this post.
