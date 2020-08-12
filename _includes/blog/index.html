@@ -1,7 +1,30 @@
+
+<br>
+<h3><b>Deep Learning</b></h3>
+This series goes over neural networks, their various architectures, applications and the math.
+<br>
+
 <div class="card-group mt-2">
 
   {% for post in site.posts %}
-    {% include blog/post-card.html %}
+      {% if post.path contains 'dl' %}
+        {% include blog/post-card.html %}
+      {% endif %}
+  {% endfor %}
+  
+</div>
+
+<br>
+<h3><b>Statistical Machine Learning</b></h3>
+This series goes over classical machine learning with statistical models, with the code and the math.
+<br>
+
+<div class="card-group mt-2">
+
+  {% for post in site.posts %}
+      {% if post.path contains 'ml' %}
+        {% include blog/post-card.html %}
+      {% endif %}
   {% endfor %}
   
 </div>
