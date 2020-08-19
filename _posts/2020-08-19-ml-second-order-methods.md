@@ -310,7 +310,7 @@ $$
 \textbf{B}_{k+1}\textbf{s}_{k}=\textbf{y}_{k}
 $$
 
-For reasons I'm not completely aware of at this point, it is required that $\textbf{B}_{k+1}$ be a symmetric positive definite matrix. There are several ways to represent this condition; one such way of ensuring this is that $\textbf{s}_{k}^{T} \textbf{B}_{k+1} \textbf{s}_{k} > 0$ for all non-zero $\textbf{s}_{k}$. Pre-multiplying the equation above with $\textbf{s}_{k}^{T}$ gives us what is called the **curvature condition**: $\boxed{\textbf{s}_{k}^{T} \textbf{y}_{k} > 0}$.
+For reasons I'm not completely aware of at this point, it is required that $B_{k+1}$ be a symmetric positive definite matrix. There are several ways to represent this condition; one such way of ensuring this is that $s_{k}^{T} B_{k+1} s_{k} > 0$ for all non-zero $s_{k}$. Pre-multiplying the equation above with $s_{k}^{T}$ gives us what is called the **curvature condition**: $\boxed{s_{k}^{T} y_{k} > 0}$.
 
 Now, we need some way updating this matrix recursively (using past approximations instead of computing it from scratch each time). The method most commonly used is called a **Rank 2 update**, which uses the following expression for the update.
 
@@ -318,7 +318,7 @@ $$
 \textbf{B}_{k+1}=\textbf{B}_{k}+\alpha\textbf{u}\textbf{u}^{T}+\beta\textbf{v}\textbf{v}^{T}
 $$
 
-In this expression, $\textbf{u}$ and $\textbf{v}$ are rank 1 matrices. This means than all rows of $\textbf{u}$ except only one can be expressed as a weighted sum of the other rows (and similarly for $\textbf{v}$). A clever choice of $\textbf{u}=\textbf{y}_{k}$ and $\textbf{v}=\textbf{B}_{k} \textbf{s}_{k}$ is made to preserve the conditions stated earlier. We can derive the expressions for $\alpha$ and $\beta$ as follows. First, we replace $\textbf{u}$ and $\textbf{v}$ in the update equation. Then we pre-multiply by $\textbf{s}_{k}^{T}$ and post-multiply by $\textbf{s}_{k}$ uniformly.
+In this expression, $\textbf{u}$ and $\textbf{v}$ are rank 1 matrices. This means than all rows of $\textbf{u}$ except only one can be expressed as a weighted sum of the other rows (and similarly for $\textbf{v}$). A clever choice of $u=y_{k}$ and $v=B_{k} s_{k}$ is made to preserve the conditions stated earlier. We can derive the expressions for $\alpha$ and $\beta$ as follows. First, we replace $\textbf{u}$ and $\textbf{v}$ in the update equation. Then we pre-multiply by $s_{k}^{T}$ and post-multiply by $\textbf{s}_{k}$ uniformly.
 
 $$
 \textbf{s}_{k}^{T}\textbf{B}_{k+1}\textbf{s}_{k}=\textbf{s}_{k}^{T}\textbf{B}_{k}\textbf{s}_{k}+\alpha\textbf{s}_{k}^{T}\textbf{y}_{k}\textbf{y}_{k}^{T}\textbf{s}_{k}+\beta\textbf{s}_{k}^{T}\textbf{B}_{k}\textbf{s}_{k}\textbf{s}_{k}^{T}\textbf{B}_{k}^{T}\textbf{s}_{k}
@@ -330,7 +330,7 @@ $$
 \alpha\left(\textbf{y}_{k}^{T}\textbf{s}_{k}\right)^{T}\left(\textbf{y}_{k}^{T}\textbf{s}_{k}\right)+\left(\textbf{s}_{k}^{T}\textbf{B}_{k}\textbf{s}_{k}\right)\left[I+\beta\left(\textbf{s}_{k}^{T}\textbf{B}_{k}\textbf{s}_{k}\right)^{T}\right]>0
 $$
 
-We can choose $\boxed{\alpha=\frac{1}{\textbf{y}_{k}^{T}\textbf{s}_{k}}}$ and $\boxed{\beta = -\frac{1}{\textbf{s}_{k}^{T} \textbf{B}_{k} \textbf{s}_{k}}}$ while preserving the required conditions. Substituting these values along with the others, we get the following update equation for $\textbf{B}$.
+We can choose $\boxed{\alpha=\frac{1}{y_{k}^{T} s_{k}}}$ and $\boxed{\beta = -\frac{1}{s_{k}^{T} B_{k} s_{k}}}$ while preserving the required conditions. Substituting these values along with the others, we get the following update equation for $\textbf{B}$.
 
 $$
 \textbf{B}_{k+1}=\textbf{B}_{k}+\frac{\textbf{y}_{k}\textbf{y}_{k}^{T}}{\textbf{y}_{k}^{T}\textbf{s}_{k}}-\frac{\textbf{B}_{k}\textbf{s}_{k}\textbf{s}_{k}^{T}\textbf{B}_{k}^{T}}{\textbf{s}_{k}^{T}\textbf{B}_{k}\textbf{s}_{k}}
