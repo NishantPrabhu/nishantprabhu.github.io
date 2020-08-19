@@ -88,7 +88,7 @@ $$
 $$
 
 ### I don't see iterations here
-We used the fact that $\nabla f(\textbf{x}^{\ast})=0$ at the minimum to solve for $\textbf{x}^{\ast}$ above. If that's the case, shouldn't $\textbf{x}^{\ast}$ be the minimizer we are looking for? Not quite, because the loss function $f(x)$ used up there is not the actual loss function but an approximation of it using the Taylor series. This approximation holds well in the neighborhood of $\textbf{x}_{0}$, and we have no reason to believe that $\textbf{x}_{0}$ falls at a location where the quadratic approximation holds good (if we knew the right place for $\textbf{x}_{0}$, we might as well have found the minimizer itself). Thus, we iteratively (and slowly) move in the direction suggested by the algorithm, hoping that we'll land in the correct location in a while. In general, when sufficiently close to a minima, this method convergences faster than gradient descent. In general, the iterative update is represented with the equation below.
+We used the fact that $\nabla f(\textbf{x}^{\ast})=0$ at the minimum to solve for $\textbf{x}^{\ast}$ above. If that's the case, shouldn't $\textbf{x}^{\ast}$ be the minimizer we are looking for? Not quite, because the loss function $f(x)$ used up there is not the actual loss function but an approximation of it using the Taylor series. This approximation holds well in the neighborhood of $x_{0}$, and we have no reason to believe that $x_{0}$ falls at a location where the quadratic approximation holds good (if we knew the right place for $\textbf{x}_{0}$, we might as well have found the minimizer itself). Thus, we iteratively (and slowly) move in the direction suggested by the algorithm, hoping that we'll land in the correct location in a while. In general, when sufficiently close to a minima, this method convergences faster than gradient descent. In general, the iterative update is represented with the equation below.
 
 $$
 \textbf{x}_{t+1}=\textbf{x}_{t}-\textbf{H}^{-1}(\textbf{x}_{t})\cdot\nabla_{\textbf{x}}f(\textbf{x}_{t})
@@ -298,13 +298,13 @@ The best way to begin this story is probably with the **Secant Equation**. For s
     <img src="{{ site.url }}/assets/images/gradient_plot.png" alt="gradient curve" width="500"/>
 </p>
 
-Let $\textbf{B}$ be a matrix estimating the Hessian of our loss function. At iteration $k$, this matrix is deonted by $\textbf{B}_{k}$, when the set of parameters is $\textbf{x}_{k}$ and the gradient of the loss function is $\nabla f(\textbf{x}_{k})$. Then, the following approximation holds true.
+Let $\textbf{B}$ be a matrix estimating the Hessian of our loss function. At iteration $k$, this matrix is deonted by $B_{k}$, when the set of parameters is $x_{k}$ and the gradient of the loss function is $\nabla f(x_{k})$. Then, the following approximation holds true.
 
 $$
 \textbf{B}_{k+1}\left(\textbf{x}_{k+1}-\textbf{x}_{k}\right)=\nabla f(\textbf{x}_{k+1})-\nabla f(\textbf{x}_{k})
 $$
 
-For simplicity I will denote $\left(\textbf{x}_{k+1} - \textbf{x}_{k}\right) = \textbf{s}_{k}$ and $\left( \nabla f(\textbf{x}_{k+1}) - \nabla f(\textbf{x}_k) \right) = \textbf{y}_{k}$. This reduces our equation to this form:
+For simplicity I will denote $\left(x_{k+1} - x_{k}\right) = s_{k}$ and $\left( \nabla f(x_{k+1}) - \nabla f(x_k) \right) = \textbf{y}_{k}$. This reduces our equation to this form:
 
 $$
 \textbf{B}_{k+1}\textbf{s}_{k}=\textbf{y}_{k}
