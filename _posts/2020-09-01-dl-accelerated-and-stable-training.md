@@ -96,7 +96,11 @@ The learning rate is normalized majorly with the square root of the sum of squar
 AdaDelta was developed over an interesting observation: the units of the weight updates in AdaGrad do not match the units of the weights themselves (learning rate is dimensionless). Therefore, the authors made the following modification to the AdaGrad update, one of which we have already seen in RMSprop.
 
 $$
-\Delta W(t)=\left[-\frac{\sqrt{q_{w}(t-1)}}{\epsilon+\sqrt{r_{w}(t)}}\right]G_{w}(t)\quad\textrm{where}\quad r_{w}(t)=\rho_{1}\left[\frac{1}{L}\sum_{k=0}^{L-1}G_{w}^{2}(t-k)\right]+(1-\rho_{1})G_{w}^{2}(t)\quad;\quad q_{w}(t-1)=\rho_{2}\left[\frac{1}{L}\sum_{k=2}^{L}\Delta W^{2}(t-k)\right]+(1-\rho_{2})\Delta W^{2}(t-1)
+\Delta W(t)=\left[-\frac{\sqrt{q_{w}(t-1)}}{\epsilon+\sqrt{r_{w}(t)}}\right]G_{w}(t)\quad\textrm{where}
+$$
+
+$$
+r_{w}(t)=\rho_{1}\left[\frac{1}{L}\sum_{k=0}^{L-1}G_{w}^{2}(t-k)\right]+(1-\rho_{1})G_{w}^{2}(t)\quad;\quad q_{w}(t-1)=\rho_{2}\left[\frac{1}{L}\sum_{k=2}^{L}\Delta W^{2}(t-k)\right]+(1-\rho_{2})\Delta W^{2}(t-1)
 $$
 
 The denominator is similar to the one in RMSprop. The numerator is now a moving RMS over the last $L-1$ weight updates (since the current weight update is not known). This method is very popular due to the fact that one does not have to tune any learning rate parameter for it. Initially, the weight updates will be large in magnitude leading to large overall step size. As training progresses, the weight updates become smaller in magnitude and sparser, and the overall step size reduces. AdaDelta was developed by Matthew Zeiler when he was an intern at Google.
