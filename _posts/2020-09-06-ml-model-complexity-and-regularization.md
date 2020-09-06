@@ -570,7 +570,7 @@ LASSO is named that way because it has a special property, which can help us sel
 
 $\lambda$ is a hyperparameter which must be tuned to find the best performing model. Keeping very small values of $\lambda$ is similar to having no regularization, which means our model will retain the variance that it naturally has. Setting $\lambda$ to a very high value suppresses the weights excessively, which reduces the model's variance so much that it reaches the underfitting region.
 
-Let's write some code and see how ridge regression and LASSO help us fit high dimensional models to data better. First, we need a mechanism to choose the right value of $\lambda$ (which is called `alpha` in scikit-learn functions). To do that, let's perform a logspace search over $(-3, 0)$ to find the value of $\lambda$ for which the validation error is minimum (the domain $(-3, 0)$ was chosen after some trial and error). This means the values we will be searching in will be 10 logarithmically equally spaced values between $10^{-3}$ and $10^{0}$. 
+Let's write some code and see how ridge regression and LASSO help us fit high dimensional models to data better. First, we need a mechanism to choose the right value of $\lambda$ (which is called `alpha` in scikit-learn functions). To do that, let's perform a logspace search over $(-4, -1)$ to find the value of $\lambda$ for which the validation error is minimum (the domain $(-4, -1)$ was chosen after some trial and error). This means the values we will be searching in will be 10 logarithmically equally spaced values between $10^{-4}$ and $10^{-1}$. 
 
 ```python
 import numpy as np
